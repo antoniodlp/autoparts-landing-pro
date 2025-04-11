@@ -42,7 +42,7 @@ const Projects = () => {
       id: 1,
       title: "Premium Auto Parts Direct",
       description: "A comprehensive NopCommerce solution for a leading Australian OEM parts supplier with vehicle fitment integration.",
-      image: "https://images.unsplash.com/photo-1565043666747-69f6646db940?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/images/auto-parts-warehouse.jpg",
       category: "oem",
       results: "42% increase in conversion rate"
     },
@@ -58,7 +58,7 @@ const Projects = () => {
       id: 3,
       title: "Classic Auto Restoration",
       description: "Specialized NopCommerce implementation for vintage and classic car parts with era-specific search.",
-      image: "https://images.unsplash.com/photo-1501362343565-8f1e22e316c9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/images/classic-auto-restoration.jpg",
       category: "specialty",
       results: "58% growth in international sales"
     },
@@ -66,7 +66,7 @@ const Projects = () => {
       id: 4,
       title: "4x4 Outfitters",
       description: "Vehicle-specific e-commerce solution for off-road and 4x4 accessories with interactive fitment guides.",
-      image: "https://images.unsplash.com/photo-1533650936805-8359a4bc3f65?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      image: "/images/4x4-outfitters.jpg",
       category: "aftermarket",
       results: "65% increase in mobile conversions"
     },
