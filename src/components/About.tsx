@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from 'react';
 import { MapPin, Award, Users, Zap } from 'lucide-react';
 
@@ -104,15 +103,10 @@ const About = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-tr from-auto-blue to-transparent opacity-20 rounded-lg z-10" />
               <img 
-                src="https://images.unsplash.com/photo-1565043666747-69f6646db940?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                src="/images/auto-parts-warehouse.jpg" 
                 alt="Auto parts warehouse"
                 className="rounded-lg shadow-lg object-cover w-full h-[400px]"
               />
-              <div className="absolute -bottom-6 -left-6 glass-morphism rounded-lg p-4 shadow-lg max-w-[200px]">
-                <p className="text-sm font-medium">
-                  Our Melbourne headquarters, where innovation meets automotive expertise.
-                </p>
-              </div>
             </div>
           </div>
         </div>
