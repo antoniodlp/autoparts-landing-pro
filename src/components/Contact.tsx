@@ -1,8 +1,13 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import { Send } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import { useToast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const sectionRef = useRef<HTMLElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const { toast } = useToast();
   const [formState, setFormState] = useState({
     name: '',
     email: '',
@@ -10,7 +15,6 @@ const Contact = () => {
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -42,26 +46,38 @@ const Contact = () => {
     setFormState(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSubmitted(true);
+
+    try {
+      await emailjs.sendForm(
+        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        formRef.current!,
+        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+      );
+
+      toast({
+        title: "Message sent successfully!",
+        description: "We'll be in touch with you shortly.",
+      });
+
       setFormState({
         name: '',
         email: '',
         company: '',
         message: '',
       });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
-    }, 1500);
+    } catch (error) {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -82,24 +98,10 @@ const Contact = () => {
         </div>
         
         <div className="max-w-2xl mx-auto">
-          <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-auto-silver p-8 shadow-lg">
+          <form ref={formRef} onSubmit={handleSubmit} className="bg-white rounded-lg border border-auto-silver p-8 shadow-lg">
             <h3 className="text-2xl font-display font-medium mb-6">
               Send Us a Message
             </h3>
-            
-            {isSubmitted ? (
-              <div className="bg-green-50 border border-green-200 text-green-800 rounded-lg p-4 mb-6">
-                <div className="flex">
-                  <svg className="h-5 w-5 text-green-500 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                  <div>
-                    <p className="font-medium">Message sent successfully!</p>
-                    <p className="text-sm">We'll be in touch with you shortly.</p>
-                  </div>
-                </div>
-              </div>
-            ) : null}
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
