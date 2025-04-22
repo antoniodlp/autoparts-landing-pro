@@ -52,10 +52,10 @@ const Contact = () => {
 
     try {
       await emailjs.sendForm(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        'service_gsprxws', // Replace with your EmailJS service ID
+        'template_wltz3m9', // Replace with your EmailJS template ID
         formRef.current!,
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+        'sCSLE_ExX8lBWT5pf' // Replace with your EmailJS public key
       );
 
       toast({
